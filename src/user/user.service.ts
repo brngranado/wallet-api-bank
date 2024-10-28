@@ -44,8 +44,9 @@ export class UserService {
       );
   }
   update(id: number, updateUserDto: UpdateUserDto) {
+    console.log(updateUserDto, id);
     return this.httpService
-      .put<User>(`http://localhost:8001/db/user/${id}`, updateUserDto)
+      .patch<User>(`http://localhost:8001/db/user/${id}`, updateUserDto)
       .pipe(
         map((response: AxiosResponse<User>) => response.data),
         catchError((error) => {
@@ -57,8 +58,9 @@ export class UserService {
 
   remove(id: number) {
     return this.httpService
-      .delete<void>(`http://localhost:8001/db/user/${id}`)
+      .delete<any>(`http://localhost:8001/db/user/${id}`)
       .pipe(
+        map((response: AxiosResponse<any>) => response.data),
         catchError((error) => {
           console.error(`Error removing user with id ${id}:`, error);
           throw error;

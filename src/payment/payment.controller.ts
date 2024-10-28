@@ -23,7 +23,7 @@ export class PaymentController {
 
   @Post('confirm')
   confirm(@Body() confirmPaymentDto: ConfirmPaymentDto) {
-    return this.paymentService.findAll();
+    return this.paymentService.confirm(confirmPaymentDto);
   }
 
   @Get(':id')
